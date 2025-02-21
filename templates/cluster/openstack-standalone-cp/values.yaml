@@ -17,7 +17,6 @@ ccmRegional: true
 identityRef:
   name: ""
   cloudName: ""
-  region: ""
 
 bastion:
   enabled: false

@@ -81,6 +81,10 @@
         "cloudName": {
           "description": "Name of the entry in the clouds.yaml file to use",
           "type": "string"
+        },
+        "region": {
+          "description": "Name of the region to be used in ClusterAPI objects",
+          "type": "string"
         }
       }
     },
