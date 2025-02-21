@@ -31,16 +31,20 @@ func getDefaultTestingConfiguration(provider TestingProvider) []ProviderTestingC
 		return []ProviderTestingConfig{newTestingCluster(templates.TemplateVSphereStandaloneCP, templates.TemplateVSphereHostedCP)}
 	case TestingProviderAdopted:
 		return []ProviderTestingConfig{newTestingCluster(templates.TemplateAdoptedCluster, "")}
+	case TestingProviderDocker:
+		return []ProviderTestingConfig{newTestingCluster("", templates.TemplateDockerHostedCP)}
 	default:
 		return nil
 	}
 }
 
 func newTestingCluster(templateType, hostedTemplateType templates.Type) ProviderTestingConfig {
-	config := ProviderTestingConfig{
-		ClusterTestingConfig: ClusterTestingConfig{
-			Template: templates.Default[templateType],
-		},
+	if templateType != "" {
+		config := ProviderTestingConfig{
+			ClusterTestingConfig: ClusterTestingConfig{
+				Template: templates.Default[templateType],
+			},
+		}
 	}
 	if hostedTemplateType != "" {
 		config.Hosted = &ClusterTestingConfig{

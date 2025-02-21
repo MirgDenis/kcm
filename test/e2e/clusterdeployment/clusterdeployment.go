@@ -41,6 +41,7 @@ const (
 	ProviderAzure   ProviderType = "infrastructure-azure"
 	ProviderVSphere ProviderType = "infrastructure-vsphere"
 	ProviderAdopted ProviderType = "infrastructure-internal"
+	ProviderDocker  ProviderType = "infrastructure-docker"
 )
 
 //go:embed resources/aws-standalone-cp.yaml.tpl
@@ -70,6 +71,9 @@ var vsphereHostedCPClusterDeploymentTemplateBytes []byte
 //go:embed resources/adopted-cluster.yaml.tpl
 var adoptedClusterDeploymentTemplateBytes []byte
 
+//go:embed resources/docker-hosted-cp.yaml.tpl
+var dockerHostedCPClusterDeploymentTemplateBytes []byte
+
 func FilterAllProviders() []string {
 	return []string{
 		utils.KCMControllerLabel,
@@ -77,6 +81,7 @@ func FilterAllProviders() []string {
 		GetProviderLabel(ProviderAzure),
 		GetProviderLabel(ProviderCAPI),
 		GetProviderLabel(ProviderVSphere),
+		GetProviderLabel(ProviderDocker),
 	}
 }
 
@@ -140,6 +145,8 @@ func GetUnstructured(templateType templates.Type, clusterName, template string) 
 		clusterDeploymentTemplateBytes = azureAksClusterDeploymentTemplateBytes
 	case templates.TemplateAdoptedCluster:
 		clusterDeploymentTemplateBytes = adoptedClusterDeploymentTemplateBytes
+	case templates.TemplateDockerHostedCP:
+		clusterDeploymentTemplateBytes = dockerHostedCPClusterDeploymentTemplateBytes
 	default:
 		Fail(fmt.Sprintf("Unsupported template type: %s", templateType))
 	}

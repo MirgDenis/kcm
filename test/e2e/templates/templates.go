@@ -30,6 +30,7 @@ const (
 	TemplateVSphereStandaloneCP Type = "vsphere-standalone-cp"
 	TemplateVSphereHostedCP     Type = "vsphere-hosted-cp"
 	TemplateAdoptedCluster      Type = "adopted-cluster"
+	TemplateDockerHostedCP      Type = "docker-hosted-cp"
 )
 
 // Default is a map where each key represents a supported template type,
@@ -44,6 +45,7 @@ var Default = map[Type]string{
 	TemplateVSphereStandaloneCP: "vsphere-standalone-cp-0-1-0",
 	TemplateVSphereHostedCP:     "vsphere-hosted-cp-0-1-0",
 	TemplateAdoptedCluster:      "adopted-cluster-0-1-0",
+	TemplateDockerHostedCP:      "docker-hosted-cp-0-1-0",
 }
 
 func GetType(template string) Type {
