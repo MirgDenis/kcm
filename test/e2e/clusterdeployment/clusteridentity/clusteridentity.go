@@ -147,6 +147,17 @@ func New(kc *kubeclient.KubeClient, provider clusterdeployment.ProviderType) *Cl
 				},
 			},
 		}
+	case clusterdeployment.ProviderDocker:
+		kind = "Secret"
+		version = "v1"
+		group = ""
+		identityName = secretName
+
+		secretStringData = map[string]secretData{
+			"Value": {
+				data: "foo",
+			},
+		}
 	default:
 		Fail(fmt.Sprintf("Unsupported provider: %s", provider))
 	}
@@ -169,7 +180,7 @@ func New(kc *kubeclient.KubeClient, provider clusterdeployment.ProviderType) *Cl
 	validateSecretDataPopulated(secretStringData)
 	ci.createSecret(kc)
 
-	if provider != clusterdeployment.ProviderAdopted {
+	if provider != clusterdeployment.ProviderAdopted && provider != clusterdeployment.ProviderDocker {
 		ci.waitForResourceCRD(kc)
 		ci.createClusterIdentity(kc)
 	}

@@ -53,4 +53,7 @@ const (
 	// Adopted
 	EnvVarAdoptedKubeconfigPath = "KUBECONFIG_DATA_PATH"
 	EnvVarAdoptedCredential     = "ADOPTED_CREDENTIAL"
+
+	// Docker
+	EnvVarDockerCredential      = "DOCKER_CREDENTIAL"
 )

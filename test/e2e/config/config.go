@@ -31,6 +31,7 @@ const (
 	TestingProviderAzure   TestingProvider = "azure"
 	TestingProviderVsphere TestingProvider = "vsphere"
 	TestingProviderAdopted TestingProvider = "adopted"
+	TestingProviderDocker  TestingProvider = "docker"
 )
 
 var (
@@ -100,6 +101,7 @@ func setDefaults() {
 			TestingProviderAzure:   {},
 			TestingProviderVsphere: {},
 			TestingProviderAdopted: {},
+			TestingProviderDocker:  {},
 		}
 	}
 	for provider, configs := range Config {

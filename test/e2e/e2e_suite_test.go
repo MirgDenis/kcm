@@ -103,6 +103,7 @@ func verifyControllersUp(kc *kubeclient.KubeClient) error {
 		clusterdeployment.ProviderAWS,
 		clusterdeployment.ProviderAzure,
 		clusterdeployment.ProviderVSphere,
+		clusterdeployment.ProviderDocker,
 	}
 
 	for _, provider := range providers {
